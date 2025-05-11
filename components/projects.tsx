@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github } from "lucide-react"
+import Image from "next/image"
 
 const categories = ["All", "Web App", "Mobile App"]
 
@@ -12,18 +13,17 @@ const projectsData = [
   {
     title: "Eklavya - Modern Learning Management System",
     category: "Web App",
-    image: "/projects/projects_eklavya.png?height=400&width=600",
+    image: "/projects/projects_eklavya.webp",
     description: "Eklavya is a full-featured Learning Management System (LMS) providing an exceptional learning experience with course discovery, enrollment, AI-powered examinations, and an interactive UI for students and teachers.",
     technologies: ["React", "Next.js", "TailwindCSS", "TypeScript", "Framer Motion", "Prisma", "MySQL", "Clerk", "Razor Pay", "Uploadthing", "Vercel"],
     liveLink: "https://eklavya-lms-z19t.onrender.com/",
     githubLink: "https://github.com/Kunj-Mori/Eklavya-LMS",
     featured: true
 },
-
   {
     title: "Diet Recommendation System",
     category: "Web App",
-    image: "/projects/projects_diet.png?height=400&width=600",
+    image: "/projects/projects_diet.webp",
     description:
       "An ML-based recommendation system using the Random Forest algorithm. Built with a Streamlit UI, the system calculates BMI and BMR and suggests personalized diet and exercise plans.",
     technologies: ["Streamlit", "Python", "Random Forest", "Machine Learning"],
@@ -34,7 +34,7 @@ const projectsData = [
   {
     title: "Gemini AI Voice Assistant",
     category: "Mobile App",
-    image: "projects/projects_aichat.png?height=400&width=600",
+    image: "/projects/projects_aichat.webp",
     description: "A modern, feature-rich voice assistant powered by Google's Gemini 1.5 Flash API. Interact naturally through voice or text and receive intelligent responses with a beautiful, responsive UI.",
     technologies: ["Flutter", "Dart", "Google Gemini API", "Speech-to-Text", "Text-to-Speech", "Provider", "Lottie", "Shared Preferences"],
     liveLink: "https://chatapiassistant.vercel.app/",
@@ -44,7 +44,7 @@ const projectsData = [
   {
     title: "Farmer Assistant App",
     category: "Mobile App",
-    image: "projects/projects_farmer.png?height=400&width=600",
+    image: "/projects/projects_farmer.webp",
     description: "A comprehensive mobile application designed to assist farmers with real-time weather updates, APMC market prices, and agricultural information.",
     technologies: ["Flutter", "Firebase", "Geolocator", "Provider", "http", "Cloud Firestore", "Dart"],
     liveLink: "NA",
@@ -54,26 +54,23 @@ const projectsData = [
 {
   title: "MERN Workout Application",
   category: "Web App",
-  image: "/projects/projects_workout.png?height=400&width=600",
+    image: "/projects/projects_workout.webp",
   description: "A full-stack workout tracking application built with the MERN (MongoDB, Express.js, React.js, Node.js) stack. This application allows users to track their workouts with features like authentication, real-time updates, and a modern responsive UI.",
   technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "CSS", "Font Awesome", "date-fns"],
   liveLink: "NA",
   githubLink: "https://github.com/Kunj-Mori/Workout_MERN",
   featured: true
 },
-
 {
   title: "Weather Web App (Weather.io)",
   category: "Web App",
-  image: "/projects/projects_weather.png?height=400&width=600",
+    image: "/projects/projects_weather.webp",
   description: "A simple and intuitive weather web app that allows users to check current weather conditions for any city globally. It provides real-time data such as temperature, humidity, wind speed, and weather description using the OpenWeatherMap API.",
   technologies: ["HTML", "CSS", "JavaScript", "OpenWeatherMap API"],
   liveLink: "NA",
   githubLink: "https://github.com/Kunj-Mori/Weather-Web-App-2024",
   featured: true
-},
-
-
+  }
 ]
 
 export default function Projects() {
@@ -146,10 +143,20 @@ export default function Projects() {
               }`}
             >
               <div className="relative overflow-hidden group">
-                <img
-                  src={project.image || "/placeholder.svg"}
+                <Image
+                  src={project.image || "/placeholder.webp"}
                   alt={project.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  width={600}
+                  height={400}
+                  quality={85}
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkLzYvLy02LjY2OjY2Njo2NjY2NjY2NjY2NjY2NjY2NjY2NjY2Njb/2wBDAR0XFx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx8dHx//wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder.webp";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <Button

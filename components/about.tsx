@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download, Mail } from "lucide-react"
+import Image from "next/image"
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -52,12 +53,14 @@ export default function About() {
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg blur-sm animate-pulse"></div>
               <Card className="overflow-hidden card-hover">
                 <CardContent className="p-0">
-                  <img
-                    src="/profile.png?height=600&width=800"
+                  <Image
+                    src="/profile.webp"
                     alt="Kunj Mori working"
                     className="w-full h-auto"
                     width={800}
                     height={600}
+                    priority
+                    quality={90}
                   />
                 </CardContent>
               </Card>
@@ -69,7 +72,7 @@ export default function About() {
             I am a Full Stack Developer. I specialize in AI/ML, PHP, MERN Stack development, and modern web technologies. My passion lies in creating intuitive and performant user experiences that bridge the gap between technology and user needs.
             </p>
             <p className="text-muted-foreground mb-6">
-            Throughout my career, I’ve worked with startups and established companies to deliver innovative and efficient solutions that solve real-world problems. I am a strong team player with a knack for communication and logical thinking, and I am constantly learning and exploring new technologies to stay at the forefront of web development.
+            Throughout my career, I've worked with startups and established companies to deliver innovative and efficient solutions that solve real-world problems. I am a strong team player with a knack for communication and logical thinking, and I am constantly learning and exploring new technologies to stay at the forefront of web development.
             </p>
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="p-3 bg-card rounded-lg shadow-sm border border-border/50 hover:border-primary/50 transition-colors">

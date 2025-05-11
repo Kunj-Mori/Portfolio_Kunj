@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Twitter, ChevronDown } from "lucide-react"
 import { TypeAnimation } from "react-type-animation"
+import Image from "next/image"
 
 export default function Hero() {
   const parallaxRef = useRef<HTMLDivElement>(null)
@@ -146,12 +147,14 @@ export default function Hero() {
             <div className="relative flex justify-center">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30 rounded-full blur-md animate-pulse" />
               <div className="relative w-64 h-64 bg-card rounded-full overflow-hidden border-2 border-primary/50 shadow-xl">
-                <img
-                  src="/logo.png?height=50&width=50"
+                <Image
+                  src="/logo.webp"
                   alt="Kunj Mori"
                   className="w-full h-full object-cover"
                   width={300}
                   height={300}
+                  priority
+                  quality={90}
                 />
               </div>
             </div>

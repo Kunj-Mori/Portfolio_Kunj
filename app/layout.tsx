@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "fGL9b14qCaIOCr9Xn7ZHo3Cxn74Duto96yc9GW8fGpg",
     yandex: "yandex-verification-code",
     yahoo: "yahoo-verification-code",
     bing: "bing-verification-code"
@@ -100,6 +100,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/kunj.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-site-verification" content="fGL9b14qCaIOCr9Xn7ZHo3Cxn74Duto96yc9GW8fGpg" />
         <link rel="canonical" href="https://kunjmori.vercel.app" />
         <link rel="alternate" hrefLang="en" href="https://kunjmori.vercel.app" />
         <meta name="theme-color" content="#000000" />

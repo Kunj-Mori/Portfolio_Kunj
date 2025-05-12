@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,7 +18,12 @@ export default function Contact() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
   const sectionRef = useRef<HTMLElement>(null)
+  const form = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -31,21 +37,42 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' });
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      if (form.current) {
+        const result = await emailjs.sendForm(
+          'service_gq87d3g',
+          'template_6f1czgh',
+          form.current,
+          'rrvmbSflQ5HEvtAc0'
+        );
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
-    setIsSubmitting(false)
-
-    // In a real application, you would send the form data to your backend
-    console.log("Form submitted:", formData)
+        if (result.text === 'OK') {
+          setSubmitStatus({
+            type: 'success',
+            message: 'Thank you for your message! I will get back to you soon.',
+          });
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+        } else {
+          throw new Error('Failed to send message');
+        }
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Sorry, there was an error sending your message. Please try again.',
+      });
+      console.error('Error sending email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   useEffect(() => {
@@ -234,7 +261,18 @@ export default function Contact() {
             <Card className="border-border/50 card-hover">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+                  {submitStatus.type && (
+                    <div
+                      className={`p-4 rounded-md ${
+                        submitStatus.type === 'success'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
+                    >
+                      {submitStatus.message}
+                    </div>
+                  )}
                   <div className="transition-all duration-300 hover:translate-y-[-2px]">
                     <Input
                       type="text"
